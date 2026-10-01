@@ -1,0 +1,127 @@
+/* =========================================================
+   반응형 보완 (모든 페이지, 가장 마지막에 로드)
+   기본 줄바꿈 기준은 main.css 와 같다: 1280 / 1024 / 720px
+   - 관리자 로그인 시 상단 검은 막대와 헤더 겹침 방지
+   - 커뮤니티 좌측 메뉴 → 태블릿·휴대폰에서 가로로 넘기는 탭
+   - 게시판 표 → 휴대폰에서 카드형 목록
+   - 본문 표·긴 주소, 입력칸 확대 방지 등 공통 보완
+   ========================================================= */
+
+/* 넓은 화면에서는 가로 탭용 요소를 숨긴다 */
+.side__sub, .sec--board .side .side__mlink { display: none; }
+
+/* 관리자 로그인 시: 워드프레스 관리 막대(32px, 좁은 화면 46px) 아래로 헤더를 내린다 */
+.admin-bar .hd--capsule { top: 32px; }
+@media (max-width: 782px) {
+	.admin-bar .hd--capsule { top: 46px; }
+}
+@media (max-width: 600px) {
+	/* 이 너비에서는 관리 막대가 화면과 함께 올라가므로 헤더는 맨 위에 붙인다 */
+	.admin-bar .hd--capsule { top: 0; }
+	#wpadminbar { position: absolute; }
+}
+
+/* 검색칸: 좁은 화면에서 입력칸이 줄어들어 [검색] 버튼이 밖으로 밀리지 않게 */
+.list-search input, .search-form input, .h-cta__form > * { min-width: 0; }
+
+/* 작은 노트북·가로 태블릿 (1025~1200px): 데스크톱 메뉴가 헤더 캡슐 밖으로 넘치지 않게 */
+@media (min-width: 1025px) and (max-width: 1200px) {
+	.hd--capsule .hd__search { display: none; }
+	.hd--capsule .hd__inner { gap: 10px; padding-left: 20px; }
+	.hd--capsule .gnb__list > li > a { padding: 0 9px; font-size: 14px; }
+	.hd--capsule .logo__text { font-size: 20px; }
+	.h-cta__grid { gap: 40px; }
+}
+
+/* 본문 안 표·긴 주소 */
+.prose table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.prose a, .view-body a { overflow-wrap: anywhere; }
+.prose pre { max-width: 100%; overflow-x: auto; }
+
+/* ---------- 태블릿 이하 (≤1024px) ---------- */
+@media (max-width: 1024px) {
+	/* 커뮤니티 좌측 메뉴 → 가로 탭 */
+	.sec--board .side { position: static; margin: 0 calc(var(--gutter) * -1) 8px; }
+	.sec--board .side__title { display: none; }
+	.sec--board .side > ul {
+		display: flex; gap: 0; padding: 0 var(--gutter);
+		overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+		border-bottom: 1px solid var(--h-line);
+	}
+	.sec--board .side > ul::-webkit-scrollbar { display: none; }
+	.sec--board .side > ul > li { flex: none; border-bottom: 0; }
+	.sec--board .side .side__group { display: none; }
+	.sec--board .side .side__mlink { display: flex; }
+	.sec--board .side > ul > li > a {
+		padding: 14px 14px 12px; border-bottom: 2px solid transparent; margin-bottom: -1px;
+		font-size: 14px; white-space: nowrap; color: var(--h-sub);
+	}
+	.sec--board .side > ul > li > a[aria-current] { border-bottom-color: var(--d-blue); color: var(--d-blue); font-weight: 700; }
+	.sec--board .side__sub { display: flex; gap: 6px; padding: 12px var(--gutter) 0; overflow-x: auto; scrollbar-width: none; }
+	.sec--board .side__sub::-webkit-scrollbar { display: none; }
+	.sec--board .side__sub a { flex: none; padding: 6px 12px; border: 1px solid var(--h-line-strong); font-size: 13px; white-space: nowrap; color: var(--h-sub); }
+	.sec--board .side__sub a[aria-current] { border-color: var(--d-blue); background: var(--d-blue); color: #fff; }
+	.sec--board .board-layout { gap: 24px; }
+	/* 가로 탭의 전체 폭이 칸 너비를 밀어내지 않게 */
+	.board-layout > * { min-width: 0; }
+
+	/* 제품 상세 사양표가 좁아질 때 */
+	.spec th { width: 38%; }
+}
+
+/* ---------- 휴대폰 (≤720px) ---------- */
+@media (max-width: 720px) {
+	/* 입력칸 글자를 16px 이상으로: 아이폰에서 입력할 때 화면이 확대되지 않게 */
+	input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px; }
+
+	/* 커뮤니티 제목·탭 */
+	.sec--board .board-title { font-size: 22px; }
+	.sec--board .seg { grid-template-columns: repeat(3, 1fr); }
+	.sec--board .seg a { padding: 11px 4px; font-size: 13px; }
+	.sec--board .list-search { justify-content: stretch; }
+	.sec--board .list-search input { width: auto; flex: 1; min-width: 0; }
+	.sec--board .faq__item summary { padding: 16px 4px; }
+	.sec--board .faq__a { padding: 16px 12px 20px; }
+
+	/* 게시판 표 → 카드형 목록 */
+	.sec--board .board, .sec--board .board tbody { display: block; }
+	.sec--board .board thead { display: none; }
+	.sec--board .board tr {
+		display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+		padding: 14px 4px; border-bottom: 1px solid var(--h-line);
+	}
+	.sec--board .board td { display: block; width: auto !important; padding: 0; border: 0; text-align: left; font-size: 13px; font-weight: 400; color: var(--h-faint); }
+	.sec--board .board tr:last-child td { border: 0; }
+	.sec--board .board td.c-title { order: -1; flex-basis: 100%; font-size: 15px; font-weight: 500; line-height: 1.5; color: var(--h-ink); }
+	.sec--board .board td.c-num { display: none; }
+	.sec--board .board tr.is-pinned td.c-num { display: block; order: -2; }
+	.sec--board .board td.c-cat, .sec--board .board td.c-place, .sec--board .board td.c-author { display: block; }
+	.sec--board .board td.c-views::before { content: '조회 '; }
+	.sec--board .board td.c-when { font-size: 13px; }
+	.sec--board .board td.c-file { margin-left: auto; }
+	.sec--board .board td.empty { flex-basis: 100%; padding: 48px 0; text-align: center; font-size: 14px; }
+	.sec--notice .board td { font-size: 13px; color: var(--h-faint); }
+	.sec--notice .board td.c-title { font-size: 15px; }
+	.sec--notice .badge { font-size: 12px; color: var(--d-blue); }
+
+	/* 게시판 상세 */
+	.view-head__title { font-size: 22px; }
+	.view-head__meta { flex-wrap: wrap; gap: 4px 12px; }
+	.view-info div { gap: 12px; }
+	.view-nav p { gap: 12px; padding: 12px 4px; }
+	.view-nav a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+	.qa__row { padding: 18px 4px; }
+
+	/* 제품 Q&A 질문하기, 샘플/데모신청 */
+	.ask > summary, .ask[open] > summary { align-self: stretch; justify-content: center; margin-left: 0; }
+	.sec--board .checks { grid-template-columns: 1fr; }
+	.sec--board .form__submit .btn { width: 100%; }
+}
+
+/* ---------- 작은 휴대폰 (≤380px) ---------- */
+@media (max-width: 380px) {
+	:root { --gutter: 16px; }
+	.sec--board .seg { grid-template-columns: repeat(2, 1fr); }
+	.grid--products, .grid--4 { gap: 20px 10px; }
+	.hd--capsule .logo__text { font-size: 19px; }
+}
