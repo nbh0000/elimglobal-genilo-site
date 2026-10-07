@@ -10,9 +10,9 @@
 	<script>
 		/* 저장된 밝게/어둡게 설정을 화면 그리기 전에 적용 (깜빡임 방지) */
 		try { var t = localStorage.getItem('elim-theme'); if (t === 'light' || t === 'dark') { document.documentElement.setAttribute('data-theme', t); } } catch (e) {}
-				/* 메인 첫 접속: 인트로 화면 (세션당 한 번, 움직임 줄이기 설정이면 생략) */
+				/* 메인 인트로 화면: 메인에 들어올 때마다(새로고침 포함), 움직임 줄이기 설정이면 생략 */
 		try {
-			if (!sessionStorage.getItem('elim-intro') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-on');
 			}
 		} catch (e) {}
@@ -120,7 +120,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='elim-community-css' href='https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/css/community.css?ver=1790511793' media='all' />
 <link rel='stylesheet' id='elim-home-css' href='https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/css/home.css?ver=1790288320' media='all' />
 <link rel='stylesheet' id='elim-responsive-css' href='https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/css/responsive.css?ver=1790516599' media='all' />
-<link rel='stylesheet' id='elim-genilo-css' href='https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/css/genilo.css?ver=1790843860' media='all' />
+<link rel='stylesheet' id='elim-genilo-css' href='https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/css/genilo.css?ver=1791360435' media='all' />
 </head>
 <body class="home wp-singular page-template-default page page-id-4 wp-embed-responsive wp-theme-elimglobal">
 <a class="skip" href="#main">본문 바로가기</a>
@@ -128,7 +128,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 	<div class="intro" data-intro aria-hidden="true">
 		<div class="intro__bg"></div>
 		<div class="intro__inner">
-			<img class="intro__logo" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo.png" alt="" width="618" height="200" data-intro-logo>
+			<img class="intro__logo" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo.png" alt="" width="379" height="240" data-intro-logo>
 			<p class="intro__tag">SAMPLE PREPARATION SOLUTIONS</p>
 		</div>
 	</div>
@@ -143,25 +143,38 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		<div class="wrap hd__inner">
 			<div class="logo">
 				<a href="https://nbh0000.github.io/elimglobal-genilo-site/" rel="home">
-					<img class="logo__img" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo.png" alt="(주)엘림글로벌" width="618" height="200" data-hd-logo>
+					<img class="logo__img" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo.png" alt="(주)엘림글로벌" width="379" height="240" data-hd-logo>
 				</a>
 			</div>
 
 			<nav class="gnb" id="gnb" aria-label="주 메뉴" data-gnb>
 				<ul id="menu-%ec%83%81%eb%8b%a8-%eb%a9%94%eb%89%b4" class="gnb__list"><li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="https://nbh0000.github.io/elimglobal-genilo-site/company/">회사소개</a></li>
-<li id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-31"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/cole-parmer/">Cole-Parmer</a><button type="button" class="gnb__toggle" aria-expanded="false" aria-label="Cole-Parmer 하위 메뉴"><svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button>
+<li id="menu-item-123" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-123"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/">XRF 분석 솔루션</a><button type="button" class="gnb__toggle" aria-expanded="false" aria-label="XRF 분석 솔루션 하위 메뉴"><svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button>
 <ul class="sub-menu">
-	<li id="menu-item-32" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-32"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/cole-parmer/freezer-mill/">동결분쇄기</a></li>
-	<li id="menu-item-33" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-33"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/cole-parmer/homogenizer/">균질화기</a>
+	<li id="menu-item-124" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-124"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-analysis/">XRF 분석</a></li>
+	<li id="menu-item-125" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-125"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-sample-preparation/">XRF 시료 전처리</a></li>
+	<li id="menu-item-126" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-126"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-instruments/">XRF 분석장비</a></li>
+	<li id="menu-item-127" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-127"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/">XRF 응용분야</a>
 	<ul class="sub-menu">
-		<li id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-34"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/cole-parmer/homogenizer/hg-series/">HG Series</a></li>
-		<li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-35"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/cole-parmer/homogenizer/bm-series/">BM Series</a></li>
+		<li id="menu-item-128" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-128"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/metals-alloys/">금속/합금</a></li>
+		<li id="menu-item-129" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-129"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/minerals-geology/">광물/지질</a></li>
+		<li id="menu-item-130" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-130"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/cement-construction/">시멘트/건축재료</a></li>
+		<li id="menu-item-131" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-131"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/ceramics-glass/">세라믹/유리</a></li>
+		<li id="menu-item-132" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-132"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/battery-energy/">배터리/에너지</a></li>
+		<li id="menu-item-133" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-133"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-analysis-solution/xrf-applications/chemicals-materials/">화학/소재</a></li>
 	</ul>
 </li>
 </ul>
 </li>
-<li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-36"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/">XRF 전처리 장비</a></li>
-<li id="menu-item-37" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-37"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/sem-tem-sample-prep/">SEM/TEM 전처리 장비</a></li>
+<li id="menu-item-134" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-134"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/">XRF 전처리</a><button type="button" class="gnb__toggle" aria-expanded="false" aria-label="XRF 전처리 하위 메뉴"><svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button>
+<ul class="sub-menu">
+	<li id="menu-item-135" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-135"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/grinding/">분쇄</a></li>
+	<li id="menu-item-136" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-136"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/cryogenic-grinding/">동결분쇄</a></li>
+	<li id="menu-item-137" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-137"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/pellet/">Pellet</a></li>
+	<li id="menu-item-138" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-138"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/fusion/">Fusion</a></li>
+	<li id="menu-item-139" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-139"><a href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/crm/">표준시약 (CRM)</a></li>
+</ul>
+</li>
 <li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38"><a href="https://nbh0000.github.io/elimglobal-genilo-site/resources/">전문 자료실</a></li>
 <li id="menu-item-39" class="menu-item menu-item-type-post_type_archive menu-item-object-notice menu-item-has-children menu-item-39"><a href="https://nbh0000.github.io/elimglobal-genilo-site/notice/">커뮤니티</a><button type="button" class="gnb__toggle" aria-expanded="false" aria-label="커뮤니티 하위 메뉴"><svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button>
 <ul class="sub-menu">
@@ -197,7 +210,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <main id="main" class="main">
 
 <section class="h-hero" aria-roledescription="carousel" aria-label="주요 소개" data-hero>
-			<div class="h-slide is-on" role="group" aria-roledescription="slide" aria-label="1 / 4" data-slide-item>
+			<div class="h-slide is-on" role="group" aria-roledescription="slide" aria-label="1 / 3" data-slide-item>
 			<img class="h-slide__img" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/draft/hero.jpg" alt="" width="1512" height="602" fetchpriority="high" decoding="async">			<div class="h-wrap h-hero__inner">
 				<div class="h-hero__text">
 					<p class="h-eyebrow">SAMPLE PREPARATION SOLUTIONS</p>											<h1 class="h-hero__title">시료 전처리 장비 전문 기업<br />
@@ -209,27 +222,17 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 			</div>
 		</div>
-			<div class="h-slide" role="group" aria-roledescription="slide" aria-label="2 / 4" aria-hidden="true" data-slide-item>
+			<div class="h-slide" role="group" aria-roledescription="slide" aria-label="2 / 3" aria-hidden="true" data-slide-item>
 			<img width="364" height="319" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/slide-1.jpg" class="h-slide__img" alt="극저온 동결분쇄기" loading="lazy" decoding="async" srcset="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/slide-1.jpg 364w, https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/slide-1-300x263.jpg 300w" sizes="auto, (max-width: 364px) 100vw, 364px" />			<div class="h-wrap h-hero__inner">
 				<div class="h-hero__text">
-					<p class="h-eyebrow">Products</p>											<h2 class="h-hero__title">Cole-Parmer 장비</h2>
-										<p class="h-hero__desc">Cole-Parmer의 바이오 시료 전처리 장비. 동결분쇄기와 균질화기로 조직·식물·고분자 시료를 분석 가능한 상태로 만듭니다.</p>					<div class="h-hero__actions">
-													<a class="h-btn h-btn--dark" href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/cole-parmer/">제품 보기 <svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-											</div>
-				</div>
-			</div>
-		</div>
-			<div class="h-slide" role="group" aria-roledescription="slide" aria-label="3 / 4" aria-hidden="true" data-slide-item>
-			<img width="364" height="319" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/slide-4.jpg" class="h-slide__img" alt="자동 퓨전 비드 제조기" loading="lazy" decoding="async" srcset="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/slide-4.jpg 364w, https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/slide-4-300x263.jpg 300w" sizes="auto, (max-width: 364px) 100vw, 364px" />			<div class="h-wrap h-hero__inner">
-				<div class="h-hero__text">
-					<p class="h-eyebrow">Products</p>											<h2 class="h-hero__title">XRF 전처리 장비</h2>
+					<p class="h-eyebrow">Products</p>											<h2 class="h-hero__title">XRF 전처리</h2>
 										<p class="h-hero__desc">XRF(엑스선 형광분석) 정량 분석의 정확도를 좌우하는 퓨전 비드·프레스 펠릿 제조 장비.</p>					<div class="h-hero__actions">
 													<a class="h-btn h-btn--dark" href="https://nbh0000.github.io/elimglobal-genilo-site/product-category/xrf-sample-prep/">제품 보기 <svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
 											</div>
 				</div>
 			</div>
 		</div>
-			<div class="h-slide" role="group" aria-roledescription="slide" aria-label="4 / 4" aria-hidden="true" data-slide-item>
+			<div class="h-slide" role="group" aria-roledescription="slide" aria-label="3 / 3" aria-hidden="true" data-slide-item>
 			<img width="208" height="139" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/uploads/2026/09/product-1.jpg" class="h-slide__img" alt="스퍼터 코터" loading="lazy" decoding="async" />			<div class="h-wrap h-hero__inner">
 				<div class="h-hero__text">
 					<p class="h-eyebrow">Products</p>											<h2 class="h-hero__title">SEM/TEM 전처리 장비</h2>
@@ -245,7 +248,6 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 							<button type="button" class="h-bar is-on" aria-label="1번 슬라이드" aria-current="true" data-bar="0"><span></span></button>
 							<button type="button" class="h-bar" aria-label="2번 슬라이드" data-bar="1"><span></span></button>
 							<button type="button" class="h-bar" aria-label="3번 슬라이드" data-bar="2"><span></span></button>
-							<button type="button" class="h-bar" aria-label="4번 슬라이드" data-bar="3"><span></span></button>
 						<button type="button" class="h-hero__arrow" aria-label="다음 슬라이드" data-hero-next><svg class="ico" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></button>
 		</div>
 	</section>
@@ -302,7 +304,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 								<span class="h-pcard__badge" aria-hidden="true">01</span>
 								<span class="h-pcard__info">
 									<span class="h-pcard__name">극저온 동결분쇄기</span>
-									<span class="h-pcard__model">Freezer/Mill Type</span>									<span class="h-pcard__chip">Cole-Parmer 장비</span>								</span>
+									<span class="h-pcard__model">Freezer/Mill Type</span>									<span class="h-pcard__chip">XRF 전처리</span>								</span>
 							</a>
 						</li>
 												<li class="h-flow__item" data-flow-item>
@@ -311,7 +313,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 								<span class="h-pcard__badge" aria-hidden="true">02</span>
 								<span class="h-pcard__info">
 									<span class="h-pcard__name">고속 균질화기</span>
-									<span class="h-pcard__model">HG Series</span>									<span class="h-pcard__chip">Cole-Parmer 장비</span>								</span>
+									<span class="h-pcard__model">HG Series</span>									<span class="h-pcard__chip">XRF 전처리</span>								</span>
 							</a>
 						</li>
 												<li class="h-flow__item" data-flow-item>
@@ -320,7 +322,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 								<span class="h-pcard__badge" aria-hidden="true">03</span>
 								<span class="h-pcard__info">
 									<span class="h-pcard__name">비드밀 균질화기</span>
-									<span class="h-pcard__model">BM Series</span>									<span class="h-pcard__chip">Cole-Parmer 장비</span>								</span>
+									<span class="h-pcard__model">BM Series</span>									<span class="h-pcard__chip">XRF 전처리</span>								</span>
 							</a>
 						</li>
 												<li class="h-flow__item" data-flow-item>
@@ -329,7 +331,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 								<span class="h-pcard__badge" aria-hidden="true">04</span>
 								<span class="h-pcard__info">
 									<span class="h-pcard__name">자동 퓨전 비드 제조기</span>
-									<span class="h-pcard__model">Fusion Bead</span>									<span class="h-pcard__chip">XRF 전처리 장비</span>								</span>
+									<span class="h-pcard__model">Fusion Bead</span>									<span class="h-pcard__chip">XRF 전처리</span>								</span>
 							</a>
 						</li>
 												<li class="h-flow__item" data-flow-item>
@@ -456,7 +458,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 담당자가 확인 후 연락드립니다.</p>
 									</div>
 				<form class="h-cta__form" method="post" action="https://nbh0000.github.io/elimglobal-genilo-site/wp-admin/admin-post.php">
-					<input type="hidden" id="elim_nonce" name="elim_nonce" value="13f1c1e90f" /><input type="hidden" name="_wp_http_referer" value="/" /><input type="hidden" name="action" value="elim_inquiry"><input type="hidden" name="form_type" value="quick"><input type="hidden" name="ts" value="1790846516"><input type="hidden" name="back" value="https://nbh0000.github.io/elimglobal-genilo-site/"><div class="hp" aria-hidden="true"><label>웹사이트<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>										<div class="h-field">
+					<input type="hidden" id="elim_nonce" name="elim_nonce" value="97c6eee138" /><input type="hidden" name="_wp_http_referer" value="/" /><input type="hidden" name="action" value="elim_inquiry"><input type="hidden" name="form_type" value="quick"><input type="hidden" name="ts" value="1791360671"><input type="hidden" name="back" value="https://nbh0000.github.io/elimglobal-genilo-site/"><div class="hp" aria-hidden="true"><label>웹사이트<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>										<div class="h-field">
 						<label for="q-name">성함</label>
 						<input id="q-name" type="text" name="name" required autocomplete="name" value="">
 					</div>
@@ -487,7 +489,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <footer class="ft">
 	<div class="wrap">
 		<div class="ft__top">
-			<p class="ft__logo"><img src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo.png" alt="(주)엘림글로벌" width="618" height="200" loading="lazy"></p>
+			<p class="ft__logo"><img class="logo-on-light" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo.png" alt="(주)엘림글로벌" width="379" height="240" loading="lazy"><img class="logo-on-dark" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/img/logo-dark.png" alt="" width="379" height="240" loading="lazy"></p>
 			<nav aria-label="하단 메뉴">
 				<ul class="ft__links"><li><a href="https://nbh0000.github.io/elimglobal-genilo-site/company/">회사소개</a></li><li><a href="https://nbh0000.github.io/elimglobal-genilo-site/contact/">견적문의</a></li></ul>			</nav>
 		</div>
@@ -511,7 +513,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/elimglobal/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-<script data-wp-strategy="defer" defer id="elim-js" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/js/main.js?ver=1790843860"></script>
+<script data-wp-strategy="defer" defer id="elim-js" src="https://nbh0000.github.io/elimglobal-genilo-site/wp-content/themes/elimglobal/assets/js/main.js?ver=1790847597"></script>
 <script src="https://nbh0000.github.io/elimglobal-genilo-site/static-preview.js" defer></script>
 </body>
 </html>

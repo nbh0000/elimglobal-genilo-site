@@ -326,7 +326,6 @@
 			if (!docEl.classList.contains('intro-on')) return;
 			docEl.classList.remove('intro-on');
 			intro.remove();
-			try { sessionStorage.setItem('elim-intro', '1'); } catch (e) {}
 			heroStart();
 			startReveal();
 		};

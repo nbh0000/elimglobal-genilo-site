@@ -46,6 +46,20 @@ body {
 }
 
 /* ---------- 헤더: 원본 캡슐형 (모양은 system.css) + 새 로고 이미지 ---------- */
+/* 헤더는 다크 모드에서도 밝은 캡슐 그대로: 헤더 안에서만 밝은 색 토큰으로 되돌린다 */
+.hd--capsule {
+	color-scheme: light;
+	--ink: #14171a; --text: #2b3035; --muted: #6a7178; --faint: #667085; --line: #e3e5e8; --line-strong: #c9cdd2;
+	--bg: #ffffff; --bg-soft: #f5f5f3; --surface: #ffffff; --surface-2: #f2f2f2;
+	--h-ink: #0f172a; --h-sub: #475467; --h-faint: #667085; --h-line: #e4e7ec; --h-line-strong: #d0d5dd;
+	--h-soft: #f5f6f8; --h-card: #ffffff; --h-chip: rgba(15, 23, 42, .05);
+	--h-glass: rgba(255, 255, 255, .78); --h-glass-solid: rgba(255, 255, 255, .95); --h-glass-border: rgba(255, 255, 255, .8);
+	--h-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 32px -12px rgba(16, 24, 40, .16);
+	--g-text-accent: var(--g-violet);
+}
+/* 다크 모드에서는 뒤가 어두워 반투명 유리가 회색으로 보이므로 더 불투명하게 */
+:root[data-theme="dark"] .hd--capsule { --h-glass: rgba(255, 255, 255, .94); --h-glass-solid: rgba(255, 255, 255, .97); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hd--capsule { --h-glass: rgba(255, 255, 255, .94); --h-glass-solid: rgba(255, 255, 255, .97); } }
 .hd--capsule .logo__img { display: block; width: auto; height: 44px; }
 .hd--capsule .gnb__list > li:last-child > a { background: var(--g-violet-ink); }
 .hd--capsule .gnb__list > li:last-child > a:hover { background: var(--g-violet); }
@@ -268,11 +282,115 @@ body {
 .ft { background: var(--g-sec-b); color: var(--h-sub); border: 0; border-top: 1px solid var(--g-sec-line); }
 .ft a { color: var(--h-ink); }
 .ft a:hover { color: var(--g-text-accent); }
-.ft__logo img { display: block; width: auto; height: 50px; }
+.ft__logo img { display: block; width: auto; height: 64px; }
+/* 로고 글자가 검정이라 다크 모드 푸터에서는 흰 글자 로고로 바꿔 끼운다 */
+.ft__logo .logo-on-dark { display: none; }
+:root[data-theme="dark"] .ft__logo .logo-on-light { display: none; }
+:root[data-theme="dark"] .ft__logo .logo-on-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .ft__logo .logo-on-light { display: none; }
+	:root:not([data-theme="light"]) .ft__logo .logo-on-dark { display: block; }
+}
 .ft__info dt { color: var(--h-ink); }
 .ft__info dd { color: var(--h-sub); }
 .ft__copy { color: var(--h-faint); border-color: var(--h-line); }
 .ft__top { border-color: var(--h-line); }
+
+/* =========================================================
+   회사소개 (page-company.php)
+   상단 보라 배너 → 인사말(제목 / 본문 카드) → 세로 연혁(좌우 번갈아) → 오시는길(지도·연락처 카드)
+   ========================================================= */
+.co-kicker { margin: 0 0 12px; font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g-text-accent); }
+
+/* 상단 배너: 로고의 짙은 보라 + 겹친 원 장식 */
+.co-hero { padding: 0 32px; }
+.co-hero__inner {
+	position: relative; overflow: hidden; isolation: isolate; max-width: calc(var(--h-wrap) - 64px); margin: 8px auto 0;
+	padding: 72px 56px; border-radius: 20px; color: #fff;
+	background: radial-gradient(120% 140% at 85% 20%, #3a2d86 0%, var(--g-deep-2) 45%, var(--g-deep) 100%);
+}
+.co-hero__inner::before, .co-hero__inner::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; border: 1px solid rgba(196, 187, 239, .22); }
+.co-hero__inner::before { right: -80px; top: -140px; width: 420px; height: 420px; }
+.co-hero__inner::after { right: 90px; top: -40px; width: 220px; height: 220px; background: rgba(196, 187, 239, .06); }
+.co-hero__eyebrow { margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--g-lav); }
+.co-hero__title { margin: 0; font-size: clamp(32px, 3.6vw, 48px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.15; }
+
+/* 인사말: 왼쪽 제목 / 오른쪽 본문 카드 */
+.co-greet { padding: 96px 0; border-bottom: 1px solid var(--g-sec-line); background: var(--g-sec-a); }
+.co-greet .wrap { padding-left: var(--gutter, 32px); }
+.co-greet__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 72px; align-items: start; }
+.co-greet .greet__title { margin: 0; font-size: clamp(28px, 2.8vw, 40px); font-weight: 800; line-height: 1.3; letter-spacing: -0.035em; color: var(--h-ink); text-wrap: balance; }
+.co-greet__bar { display: block; width: 48px; height: 3px; margin-top: 28px; border-radius: 2px; background: var(--g-violet); }
+.co-greet__body {
+	max-width: none; padding: 40px 44px; border-radius: 20px; background: var(--g-sec-b); border: 1px solid var(--g-sec-line);
+	font-size: 17px; line-height: 1.95; color: var(--h-sub);
+}
+.co-greet__body p { margin: 0; }
+.co-greet__body p + p { margin-top: 12px; }
+
+/* 연혁: 가운데 세로선 + 좌우로 번갈아 놓인 카드 */
+.co-history { padding: 104px 0 112px; background: var(--g-sec-b); border-bottom: 1px solid var(--g-sec-line); }
+.co-history .wrap { overflow: visible; }
+.co-history__head { margin-bottom: 56px; text-align: center; }
+.co-history__title { font-size: clamp(28px, 2.8vw, 40px); font-weight: 800; letter-spacing: -0.03em; color: var(--h-ink); }
+.co-tl { position: relative; max-width: 960px; margin: 0 auto; padding: 0; list-style: none; }
+.co-tl::before { content: ""; position: absolute; left: 50%; top: 8px; bottom: 8px; width: 2px; margin-left: -1px; background: linear-gradient(180deg, var(--g-violet) 0%, var(--g-sec-line) 100%); }
+.co-tl__item { position: relative; display: flex; width: 50%; padding: 0 48px 32px 0; }
+.co-tl__item:nth-child(even) { margin-left: 50%; padding: 0 0 32px 48px; }
+.co-tl__dot {
+	position: absolute; right: -9px; top: 26px; width: 18px; height: 18px; border-radius: 50%;
+	background: var(--g-sec-a); border: 4px solid var(--g-violet); box-shadow: 0 0 0 6px var(--g-sec-b);
+}
+.co-tl__item:nth-child(even) .co-tl__dot { right: auto; left: -9px; }
+.co-tl__card {
+	flex: 1; padding: 24px 28px; border-radius: 16px; background: var(--g-sec-a); border: 1px solid var(--g-sec-line);
+	box-shadow: 0 18px 36px -24px rgba(23, 18, 58, .3);
+	transition: transform .35s var(--g-ease), box-shadow .35s var(--g-ease);
+}
+.co-tl__item:nth-child(odd) .co-tl__card { text-align: right; }
+.co-tl__card:hover { transform: translateY(-4px); box-shadow: 0 24px 44px -24px rgba(23, 18, 58, .4); }
+.co-tl__year { margin: 0 0 10px; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; color: var(--g-text-accent); font-variant-numeric: tabular-nums; }
+.co-tl__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; line-height: 1.6; color: var(--h-sub); }
+
+/* 오시는길: 보라 배너 + 지도 카드 + 연락처 카드 */
+.co-loc { padding: 96px 0 112px; background: var(--g-sec-a); }
+.co-loc .location__banner {
+	margin-top: 0; padding: 72px 0 160px;
+	background: linear-gradient(rgba(23, 18, 58, .72), rgba(37, 29, 92, .72)), var(--banner) center / cover no-repeat, var(--g-deep);
+}
+.co-loc .location__eyebrow { font-weight: 700; letter-spacing: .28em; color: var(--g-lav); }
+.co-loc .location__title { font-size: clamp(28px, 2.8vw, 38px); font-weight: 800; letter-spacing: -0.03em; }
+.co-loc .location__body { max-width: 1072px; margin-top: -120px; }
+.co-loc .map { border-radius: 20px; border: 6px solid var(--g-sec-a); box-shadow: 0 30px 60px -30px rgba(23, 18, 58, .45); }
+.co-loc .loc { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; font-size: 15px; }
+.co-loc .loc div { display: flex; flex-direction: column; gap: 6px; padding: 22px 24px; border-radius: 16px; background: var(--g-sec-b); border: 1px solid var(--g-sec-line); }
+.co-loc .loc dt { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--g-text-accent); }
+.co-loc .loc dt .ico { width: 18px; height: 18px; color: var(--g-text-accent); }
+.co-loc .loc dd { color: var(--h-ink); font-weight: 500; line-height: 1.6; }
+.co-loc .loc a { color: inherit; }
+
+@media (max-width: 1024px) {
+	.co-hero { padding: 0 24px; }
+	.co-hero__inner { padding: 56px 36px; }
+	.co-greet { padding: 72px 0; }
+	.co-greet__grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 767px) {
+	.co-hero { padding: 0 12px; }
+	.co-hero__inner { padding: 44px 24px; border-radius: 16px; }
+	.co-greet__body { padding: 28px 22px; font-size: 16px; }
+	.co-history { padding: 72px 0 80px; }
+	/* 연혁: 왼쪽 세로선 하나에 카드를 한 줄로 */
+	.co-tl::before { left: 9px; margin-left: 0; }
+	.co-tl__item, .co-tl__item:nth-child(even) { width: auto; margin-left: 0; padding: 0 0 20px 40px; }
+	.co-tl__dot, .co-tl__item:nth-child(even) .co-tl__dot { left: 0; right: auto; }
+	.co-tl__item:nth-child(odd) .co-tl__card { text-align: left; }
+	.co-tl__card { padding: 20px 22px; }
+	.co-tl__year { font-size: 24px; }
+	.co-loc { padding: 64px 0 80px; }
+	.co-loc .location__banner { padding: 56px 0 130px; }
+	.co-loc .location__body { margin-top: -100px; }
+}
 
 /* ---------- 나타나기 효과: 스크롤로 화면에 들어올 때 아래에서 위로 ----------
    data-reveal 은 main.js 가 본문·푸터의 블록마다 자동으로 붙인다. */
@@ -296,7 +414,7 @@ body {
 	.h-video[data-scrub], .h-cta__card[data-scrub] { border-radius: calc(32px - var(--sp, 1) * 14px); }
 }
 
-/* ---------- 첫 접속 인트로 (메인, 세션당 한 번) ----------
+/* ---------- 인트로 (메인에 들어올 때마다) ----------
    밝은 화면 가운데 로고가 떠오른 뒤, 로고가 작아지며 헤더 로고 자리로 옮겨 붙고
    막이 걷히며 히어로가 드러난다. 순서는 main.js 의 '인트로' 부분. */
 .intro { display: none; }
@@ -305,7 +423,7 @@ html { scrollbar-gutter: stable; } /* 스크롤을 잠갔다 풀 때 헤더 로�
 .intro-on, .intro-on body { overflow: hidden; }
 .intro__bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 48%, #ffffff 0%, #f3f1fb 55%, #e6e2f5 100%); transition: opacity .9s var(--g-ease); }
 .intro__inner { position: relative; display: grid; justify-items: center; gap: 28px; }
-.intro__logo { display: block; width: min(560px, 78vw); height: auto; transform-origin: 0 0; will-change: transform; animation: intro-in 1.1s var(--g-ease) backwards; }
+.intro__logo { display: block; width: min(320px, 56vw); height: auto; transform-origin: 0 0; will-change: transform; animation: intro-in 1.1s var(--g-ease) backwards; }
 .intro__tag { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .32em; color: var(--g-violet); animation: intro-in 1.1s .25s var(--g-ease) backwards; transition: opacity .4s; }
 @keyframes intro-in { from { opacity: 0; transform: translateY(24px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
 .intro.is-leaving .intro__tag { opacity: 0; }
@@ -365,6 +483,6 @@ html { scrollbar-gutter: stable; } /* 스크롤을 잠갔다 풀 때 헤더 로�
 	.h-cta { padding: 64px 0; }
 	.h-cta__card { padding: 40px 24px; border-radius: 16px; }
 	.h-cta__form { grid-template-columns: minmax(0, 1fr); }
-	.ft__logo img { height: 42px; }
+	.ft__logo img { height: 52px; }
 }
 
