@@ -210,7 +210,7 @@ html { scroll-padding-top: 120px; }
 .timeline__item::after { color: var(--h-line-strong); }
 .timeline__year { color: var(--h-ink); font-size: 18px; }
 .timeline ul { color: var(--h-sub); }
-.location__banner { width: calc(100% - 64px); max-width: calc(var(--h-wrap) - 64px); margin: 64px auto 0; border-radius: var(--h-radius); background: linear-gradient(rgba(8,14,24,.35), rgba(8,14,24,.35)), var(--banner) center / cover no-repeat, #2d3d6b; }
+.location__banner { width: calc(100% - 64px); max-width: calc(var(--h-wrap) - 64px); margin: 64px auto 0; border-radius: var(--h-radius); background: linear-gradient(rgba(10,37,64,.5), rgba(10,37,64,.5)), var(--banner) center / cover no-repeat, #0a2540; }
 .map { border-radius: var(--h-radius); overflow: hidden; border-color: var(--h-line); box-shadow: var(--h-shadow); }
 .loc dt { color: var(--h-ink); }
 .loc dt .ico { color: var(--accent-text); }
